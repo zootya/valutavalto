@@ -1,0 +1,19 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: cornflowerblue;
+}
+
+
+.container{
+    border: 0.1em solid #f27317;
+    border-radius: 10px;
+    margin: 0.7em;
+    height: auto;
+    background-color: blanchedalmond;
+}
+
+
+a {
+    text-decoration: none;
+}

@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bejelentkezés</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block section %}
+
     <h2>Bejelentkezés:</h2>
     <p>{{ message }}</p>
     <p></p>
@@ -25,6 +21,4 @@
     
     <a href="{% url 'signup' %}"><button >Regisztráció</button></a>
 
-    
-</body>
-</html>
+{% endblock section %}

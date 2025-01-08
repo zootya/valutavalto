@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Regisztráció</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block section %}
+
     {% csrf_token %}
     <h2>Regisztráció:</h2>
     {% if form.errors %}
@@ -42,5 +38,4 @@
         <input type="submit" value="Regisztrálok">
     </form>
     
-</body>
-</html>
+{% endblock section %}

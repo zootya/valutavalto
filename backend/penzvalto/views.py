@@ -19,6 +19,9 @@ from django.contrib.auth.models import User
 def home(request):
 
     valutak = Valutak.objects.all()
+    context = {
+        'mytitle': "Valutaváltó - Home page",
+    }
         
     if request.method == "POST": # a valutaváltót működtető programrész
         atvaltando = float(request.POST.get('atvaltando',0))
@@ -29,9 +32,16 @@ def home(request):
         try: mireertek = Valutak.objects.get(penznem=erre).arfolyam
         except Valutak.MultipleObjectsReturned: mireertek = Valutak.objects.filter(penznem=erre).first().arfolyam
         atvaltottertek= round(atvaltando * (mireertek / mirolertek))
-
-        return render(request, 'home.html', {'valutak': valutak, 'atvaltottertek': atvaltottertek, 'errol': errol, 'erre': erre, 'atvaltando': atvaltando})
-    return render(request, 'home.html', {'valutak': valutak})
+        context = {
+            'mytitle': "Valutaváltó - Home page",
+            'valutak': valutak, 
+            'atvaltottertek': atvaltottertek, 
+            'errol': errol, 
+            'erre': erre, 
+            'atvaltando': atvaltando,
+        }
+        return render(request, 'home.html', context)
+    return render(request, 'home.html', context)
 
 #-------------------------------------------------------------------------------------------------------------------------------------
 
@@ -41,7 +51,8 @@ def restAdatKezeles(request):
     if request.method == "GET":
         allData=Valutak.objects.all()
         serialized=ValutakSerializer(allData, many=True) 
-        return JsonResponse(serialized.data, safe=False)
+        #return JsonResponse(serialized.data, safe=False)
+        return Response(serialized.data)
     
 @api_view(['POST']) #valuta adatok lekérése REST API-val
 def penzadatlekeres(request):

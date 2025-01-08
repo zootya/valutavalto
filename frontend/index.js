@@ -2,7 +2,7 @@ const adatok = document.getElementById("adatok"); //ezzel egy div elemre hivatko
 
 //a függvény lekéri az árfolyamadatokat az adatbázisból és kiíja őket egy html fájlba felsorolásban
 function getAll() {
-    fetch("http://127.0.0.1:8000/restadat/")
+    fetch("http://azenhazam.mywire.org:8800/restadat/")
         .then(res => res.json())
         .then(result => {
             result.forEach(item => {
