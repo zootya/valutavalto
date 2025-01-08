@@ -2,7 +2,7 @@
 # project
  The 2023-25 Mechwart software development course's final assigment.
 
-Üdvözlök mindenkit az oldalon. Ennek a projektnek a célja, hogy eleget tegyek a Debreceni SZC Mechwart András Gépipari és Informatikai Technikum 2023/24 14EC "Backend 2. beadandó feladat" -nak.
+Üdvözlök mindenkit az oldalon. Ennek a projektnek a célja, hogy eleget tegyek a Debreceni SZC Mechwart András Gépipari és Informatikai Technikum záródolgozat -nak.
 <img src="https://www.dszcmechwart.hu/_next/image?url=https%3A%2F%2Fdeb-mechwart.cms.intezmeny.edir.hu%2Fuploads%2Fthumbnail_mehwart_f1dce688ee.png&w=256&q=90">
 
  <h1 align="center">Valutaváltó</h1>
