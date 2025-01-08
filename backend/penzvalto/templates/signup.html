@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regisztráció</title>
+</head>
+<body>
+    {% csrf_token %}
+    <h2>Regisztráció:</h2>
+    {% if form.errors %}
+        {{ form.errors }}
+        {{ message }}
+    {% endif %}
+    <form method="post">
+        <p>
+        <label for="id_username">Felhasználónév:</label>
+        <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus required aria-describedby="id_username_helptext" id="id_username" required>
+        </p>
+  
+       <!-- <p>
+        <label for="id_last_name">Vezetéknév:</label>
+        <input type="text" name="last_name" maxlength="150" id="id_last_name" required>   
+        </p>
+
+        <p>
+            <label for="id_first_name">Keresztnév:</label>
+            <input type="text" name="first_name" maxlength="150" id="id_first_name" required>
+        </p>-->
+ 
+        <p>
+            <label for="id_password1">Jelszó:</label>
+            <input type="password" name="password1" autocomplete="new-password" aria-describedby="id_password1_helptext" id="id_password1" required>
+        </p>
+
+        <p>
+            <label for="id_password2">Jelszó újra:</label>
+            <input type="password" name="password2" autocomplete="new-password" aria-describedby="id_password2_helptext" id="id_password2" required>    
+       
+        </p>
+        {% csrf_token %}
+        <input type="submit" value="Regisztrálok">
+    </form>
+    
+</body>
+</html>
