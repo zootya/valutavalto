@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bejelentkezés</title>
+</head>
+<body>
+    <h2>Bejelentkezés:</h2>
+    <p>{{ message }}</p>
+    <p></p>
+    <form method="post">
+    <p>
+        <label for="id_username">Felhasználónév:</label>
+        <input type="text" name="username" maxlength="63" required id="id_username" required>
+    </p>
+  
+    <p>
+        <label for="id_password">Jelszó:</label>
+        <input type="password" name="password" maxlength="63" required id="id_password"required>
+    </p>
+    {% csrf_token %}
+        <input type="submit" value="Bejelentkezés">
+    </form>
+    
+    <a href="{% url 'signup' %}"><button >Regisztráció</button></a>
+
+    
+</body>
+</html>

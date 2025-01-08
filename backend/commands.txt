@@ -1,0 +1,3 @@
+docker build --tag django-valutavalto .
+
+docker run -d -v d:\my_work\aladar\projektmunka\valutavalto\backend:/app --publish 8800:8800 django-valutavalto

@@ -1,0 +1,8 @@
+Ez a jango app, csak az appot tartalmazza a virtuális környezetet nem.
+Mielőtt használod, a virtuális környezetbe telepítsd a requests osztályt a pip install requests parancssal, CMD-ből.
+Működik az átváltás. Legközelebb a regisztrációs és bejelentkezés részt próbálom megcsinálni.
+További ötlet, hogy ha XY ember bejelentkezett és váltott pénzt, akkor az adott felhasználó egy táblázatba mentve láthassa a váltása adatait (mit, mire, mennyiből, mennyit), és mikor váltott.
+ill. A superuser felhasználónév és jelszó: admin
+
+
+....
