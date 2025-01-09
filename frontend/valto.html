@@ -15,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <!-- ikonok betöltése -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- https://icons.getbootstrap.com/ -->
     <!-- bootstrap import -->
  
     <link rel="stylesheet" type="text/css" href="./src/valto.css">
@@ -23,7 +24,8 @@
   <body>
  
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Valutaváltó</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,13 +66,68 @@
         </nav>
     </header>
 
-    <div class = "container">
-        <div class = "row" id = "fetchResult"></div>
-        <br>
+    <div class = "mycontainer1 big container-fluid ">
+        <h1 class="text-center text-light display-1">Globális valuta átváltások</h1>
+        <h4 class="text-center text-light">A világon a vezető valutákat globálisan átváltjuk.</h4>
+        
+        <div class="mycontainer2 p-4 m-1">
+            
+            <div class = "row row-cols-1 row-cols-lg-3 g-2">
+                <button class = "btn mybtnactive mycontainer2"><i class="bi bi-currency-exchange"></i> - Átváltás</button>
+                <button class = "btn mybtn mycontainer2"><i class="bi bi-send-check"></i> - Küldés</i></button>
+                <button class = "btn mybtn mycontainer2"><i class="bi bi-graph-up-arrow"></i> - Diagrammok</i></button>
+            </div>
+            <p>ide mit írtok</p>
+
+            <div class = "row row-cols-1 justify-content-center">
+
+                <div class = "col col-lg-auto mycontainer2 m-1">
+                    <i class="h1 bi bi-cash-coin"></i> - Átvezetni kívánt összeg
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Váltható összeg:</span>
+                        <span class="input-group-text">0.</span>
+                        <input type="number" class="form-control" id="mennyi" >
+                    </div>
+                </div>
+
+                <div class = "col col-lg-4 mycontainer2 m-1">
+                    <i class="h1 bi bi-box-arrow-in-right"></i> - Beadni kívánt valuta
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputSelect">Be váltás</label>
+                        <select class="form-select" id="inputSelect">
+                            <option selected>Valutanemek betöltése...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class = "col col-lg-4 mycontainer2 m-1">
+                    <i class="h1 bi bi-box-arrow-right"></i> - Elvinni kívánt valuta
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="outputSelect">Ki adás</label>
+                        <select class="form-select" id="outputSelect">
+                            <option selected>Valutanemek betöltése...</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class = "h6 valtas1sor"></div>
+            <div class="d-flex justify-content-between">
+                <div class="p-3">
+                    <div class = "h3 valtas2sor"></div>
+                </div>
+                <button class = "btn mybtnactive mycontainer2 m-3 p-3" onclick="szamol()"><i class="h3 bi bi-arrow-repeat"></i> - Átváltás számolása </button>
+            </div>
+            <div class = "h6 valtas3sor"></div>
+                
+
+        </div>
     </div>
 
     <br>
-    <footer class="footer fixed-bottom bg-primary ps-4">
+    <footer class="footer fixed-bottom ps-4 bg-primary">
         <span class="text-white"> © Ágoston Attila - Kardos Zoltán - Tóth Sándorné Márta 14.EC - v.:1.0.250108</span>
     </footer>
 

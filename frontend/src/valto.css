@@ -1,27 +1,51 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: cornflowerblue;
+    background-color: #85c1e9;
 }
 
 .input{
     margin: 0.1em;
 }
 
-.container{
-    border: 0.1em solid #f27317;
+.mycontainer1{
+    background: #154360;
+    border: 0.2em solid #85c1e9;
     border-radius: 10px;
-    margin: 0.7em;
-    padding: 1.5em;
     height: auto;
-    background-color: blanchedalmond;
 }
 
-img{
-    border-radius: 10px;
-    margin: 0.7em;
+.mycontainer2{
+    background: #d6eaf8;
+    border: 0.2em solid #85c1e9;
+    border-radius: 20px;
+    color: #154360;
 }
 
-.info{
-    border-radius: 10px;
+.mybtnactive{
+    background: #154360;
+    color: #d6eaf8;
+    border: 0.2em solid #154360;;
+}
+
+.mybtnactive:hover{
+    background: #d6eaf8;
+    color: #154360;
+    border: 0.2em solid #154360;;
+}
+
+.mybtn{
+    background: #d6eaf8;
+    color: #154360;
+    border: 0.2em solid #d6eaf8;
+}
+.mybtn:hover{
+    background: #d6eaf8;
+    color: #154360;
+    border: 0.2em solid #154360;;
+}
+
+.valtas2sor{
+    font-size: 2.5em;
+    font-weight: bold;
 }
