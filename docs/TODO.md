@@ -1,6 +1,7 @@
 # Az oldal elérhető:
 [fomix.hu/aladar/valto](http://fomix.hu/aladar/valto.html)
 
+
 ## Primary TODO List 
 - [x] GIThub repó létrehozása
 - [x] local fejleszői környezet kialakítása django, djangorestframework, django-cors-headers, sqlite3 migrate

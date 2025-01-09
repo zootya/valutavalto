@@ -8,6 +8,10 @@
  <h1 align="center">Valutaváltó</h1>
 
 
+# Az oldal elérhető:
+[fomix.hu/aladar/valto](http://fomix.hu/aladar/valto.html)
+
+
 ## 📚 Tech Stack
 
 - Python 3.13.1
