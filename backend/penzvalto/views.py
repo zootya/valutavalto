@@ -111,5 +111,3 @@ def delete_user(request):
     user=request.user
     User.delete(user)
     return redirect('login')
-
-
