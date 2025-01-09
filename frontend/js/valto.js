@@ -1,5 +1,5 @@
-const myUrl = "http://127.0.0.1";
-//const myUrl = "http://azenhazam.mywire.org";
+//const myUrl = "http://127.0.0.1";
+const myUrl = "http://azenhazam.mywire.org";
 
 function getArfolyam(){
     fetch(`${myUrl}:8800/restadat`).then(res=>res.json()).then(result=>{
