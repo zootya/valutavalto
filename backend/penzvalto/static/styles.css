@@ -1,19 +1,23 @@
 body{
-    margin: 0px;
-    padding: 0px;
-    background-color: cornflowerblue;
+    margin: 0;
+    padding: 0;
+    background-color: #85c1e9;
 }
-
-
-.container{
-    border: 0.1em solid #f27317;
-    border-radius: 10px;
-    margin: 0.7em;
-    height: auto;
-    background-color: blanchedalmond;
-}
-
 
 a {
     text-decoration: none;
+}
+
+.mycontainer1{
+    background: #154360;
+    border: 0.2em solid #85c1e9;
+    border-radius: 10px;
+    height: auto;
+}
+
+.mycontainer2{
+    background: #d6eaf8;
+    border: 0.2em solid #85c1e9;
+    border-radius: 20px;
+    color: #154360;
 }

@@ -2,31 +2,36 @@
 
 {% block section %}
 
-    <form method="post">
-        {% csrf_token %}
-        <p>Üdvözöllek kedves {{user.username}}</p>
-        <label for="atvaltando">Átváltandó összeg:</label>
-        <input type="number" id="atvaltando" name="atvaltando" required>    
+    <div class="mycontainer2 p-4 m-1 text-center">
 
-        <label for="errol">Erről:</label>
-        <select id="errol" name="errol">
-            {% for x in valutak %}
-                 <option value="{{ x.penznem }}">{{ x.penznem }}</option>
-            {% endfor %}
-        </select>
+        <form method="post">
+            {% csrf_token %}
+            <p>Üdvözöllek kedves {{user.username}}</p>
 
-        <label for="erre">Erre:</label>
-        <select id="erre" name="erre">
-            {% for y in valutak %}
-            <option value="{{ y.penznem }}">{{ y.penznem }}</option>
-            {% endfor %}
-        </select>    
-        <input type="submit" id="atvalt" name="valt" value="Válás">
-    </form>
+            <label for="atvaltando">Átváltandó összeg:</label>
+            <input type="number" id="atvaltando" name="atvaltando" required>    
 
-    <p>Átváltottál: 
-    {% if atvaltottertek %}
-        {{ atvaltando }} {{ errol }} -t {{ atvaltottertek }} {{ erre }}-ra/re.
-    {% endif %}
+            <label for="errol">Erről:</label>
+            <select id="errol" name="errol">
+                {% for x in valutak %}
+                     <option value="{{ x.penznem }}">{{ x.penznem }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="erre">Erre:</label>
+            <select id="erre" name="erre">
+                {% for y in valutak %}
+                <option value="{{ y.penznem }}">{{ y.penznem }}</option>
+                {% endfor %}
+            </select>    
+            <input type="submit" id="atvalt" name="valt" value="Válás">
+        </form>
+
+        <p>Átváltottál: 
+        {% if atvaltottertek %}
+            {{ atvaltando }} {{ errol }} -t {{ atvaltottertek }} {{ erre }}-ra/re.
+        {% endif %}
+
+    </div>
 
 {% endblock section %}
