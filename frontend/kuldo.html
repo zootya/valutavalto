@@ -21,13 +21,13 @@
     <link rel="stylesheet" type="text/css" href="./src/valto.css">
   
   </head>
-  <body>
+  <body onload="getValutaadatok()">
  
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-primary">
 
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Valutaváltó</a>
+                <a class="navbar-brand" href="#">Devizaváltó</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -67,8 +67,8 @@
     </header>
 
     <div class = "mycontainer1 container-fluid">
-        <h1 class="text-center text-light display-1">Globális valuta Küldések</h1>
-        <h4 class="text-center text-light">A világon a vezető valutákat globálisan továbbítjuk.</h4>
+        <h1 class="text-center text-light display-1">Globális deviza küldések</h1>
+        <h4 class="text-center text-light">A világon a vezető devizákat globálisan továbbítjuk.</h4>
         
         <div class="mycontainer2 p-4 m-1">
             
@@ -80,101 +80,82 @@
           
             <p></p>
 
-            <div class = "row row-cols-1 justify-content-center">
 
-                <div class = "col col-lg-auto mycontainer2 m-1">
-                    <i class="h1 bi bi-cash-coin"></i> - Átvezetni kívánt összeg
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Váltható összeg:</span>
-                        <span class="input-group-text">0.</span>
-                        <input type="number" class="form-control" id="mennyi" >
-                    </div>
-                </div>
-
-                <div class = "col col-lg-4 mycontainer2 m-1">
-                    <i class="h1 bi bi-box-arrow-in-right"></i> - Beadni kívánt valuta
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputSelect">Be váltás</label>
-                        <select class="form-select" id="inputSelect">
-                            <option selected>Valutanemek betöltése...</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class = "col col-lg-4 mycontainer2 m-1">
-                    <i class="h1 bi bi-box-arrow-right"></i> - Elvinni kívánt valuta
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="outputSelect">Ki adás</label>
-                        <select class="form-select" id="outputSelect">
-                            <option selected>Valutanemek betöltése...</option>
-                        </select>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class = "h6 valtas0sor" style="color:red"></div>
-            <div class = "h6 valtas1sor"></div>
-            <div class="d-flex justify-content-between">
-                <div class="p-3">
-                    <div class = "h3 valtas2sor"></div>
-                </div>
-                <button class = "btn mybtnactive mycontainer2 m-3 p-3" onclick="szamol()"><i class="h3 bi bi-arrow-repeat"></i> - Átváltás számolása </button>
-            </div>
-            <div class = "h6 valtas3sor"></div>
-            
-            <div class = "h6 valtas4sor"></div>
                 
 
         </div>
  
+
+        <div class="container px-4 text-center kuldesbig">
+            <div class="row row-cols-1 row-cols-lg-2">
+              <div class="col">
+               <div class="p-3">
+                    <div class="szoveg01"><br>
+                        A pénzküldés gyors és megbízható módja
+                    </div>
+                    <div class="szoveg02">
+                        <br>
+                        Emberek milliói ellenőrzik a nemzetközi tarifákat, és online pénzt küldnek a 200 ország 100 devizában.
+                    </div>
+               </div>
+              </div>
+
+              <div class="col">
+                <div class="mycontainer2 p-3 text-start">
+                    <p>A pénz küldés biztonságos módja</p>
+
+                    <i class="h1 bi bi-cash-coin"></i> - Küldeni kívánt összeg
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Küldendő összeg:</span>
+                        <span class="input-group-text">0.</span>
+                        <input type="number" class="form-control" id="mennyi" onblur="szamol()" tabindex="1">
+                    </div>
+
+                    <i class="h1 bi bi-box-arrow-in-right"></i> - Őn által küldött deviza
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputSelect">Be küldés</label>
+                        <select class="form-select" id="inputSelect" onblur="szamol()" tabindex="2">
+                            <option selected>Devizanemek betöltése...</option>
+                        </select>
+                    </div>
+
+                    <i class="h1 bi bi-box-arrow-right"></i> - Kedvezményezett megkapja deviza
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="outputSelect">Ki váltás</label>
+                        <select class="form-select" id="outputSelect" onblur="szamol()" tabindex="3">
+                            <option selected>Devizanemek betöltése...</option>
+                        </select>
+                    </div>
+
+                    <div class = "h6 valtas0sor" style="color:red"></div>
+                    <div class = "h6 valtas1sor"></div>
+                    <div class = "h6 valtas3sor"></div>
+                    <div class = "h6 valtas4sor"></div>
+
+                    <div class="p-3">
+                        <div class = "h3 valtas2sor"></div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <button class = "btn mybtnactive mycontainer2 m-3 p-3" onblur="#" tabindex="4"><i class="h3 bi bi-globe"></i><b> - Bejelentkezés és küldés </b></button>
+                    </div>
+        
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="col my-1">
+                <div class="my-5 text-center">
+                    <div class="szoveg01">A pénz küldés előnyei</div>
+                    <div class="szoveg02">Mennyit lehet megtakarítani, ha nemzetközi pénzátutalásokat küld velünk?</div>
+                </div>
+            </div>
+        </div>
     
-        <div class = "mycontainer2 p-4 m-1">
-            <div class = "container-fluid g-2">
-                <div class = "row row-cols-1 row-cols-lg-2 ">
-                    <div class="col col-lg-5 mx-4 my-1">
-                        <div class="kep1">
-                            <div class="kep10 h1 text-center"><br><br><br>Váltás nagy tételben</div>
-                        </div>
-                    </div>
-                    <div class="col col-lg-6 mx-4 my-1">
-                        <br>
-                        <br>
-                        <p class="h1 text-center"><b>Nagy tételben váltana valutát?</b></p>
-                        <br>
-                        <br>
-                        <p class="h3 text-center"><b>Kérjen árfolyamkedvezményt valutaváltónkban!</b></p>
-                        <br>
-                        <p class="h5 text-center">Az egyedi kedvezményt 400.000 Ft, vagy azt meghaladó összeg esetén tudjuk biztosítani és kizárólag személyesen, a valutaváltás alkalmával igényelhető.</p>
-                    </div>
-                </div>    
-            </div>
-        </div>
-
-        <div class = "mycontainer2 p-4 m-1">
-            <div class = "container-fluid g-2">
-                <div class = "row row-cols-1 row-cols-lg-2 ">
-                    <div class="col col-lg-6 mx-4 my-1">
-                        <p class="h3 text-center">Valutaváltási és egyéb információk:</p>
-                        <p class="text-star">Szombaton is nyitva tartó valutaváltó</p>
-                        <p class="text-star">10.000.000 Ft, vagy a feletti váltás esetén szükséges a pénzforrást igazoló dokumentum és az MBH Bank engedélye. Kérjük, a gyorsabb ügyintézés érdekében legyen szíves előzetesen a +36 70 809 0100 központi telefonszámon érdeklődni!</p>
-                        <p class="text-star">1 és 2 eurós pénzérmék beváltása fix 310 Ft-os áron</p>
-                        <p class="h3 text-center">Kezelési költség:</p>
-                        <p class="text-star">0,9% – maximum 34 900 Ft</p>
-                    </div>
-                    <div class="col col-lg-5 mx-4 my-1">
-                        <div class="kep2">
-                            <div class="kep20 text-center h1"><br><br><b>Keresse fel személyesen az irodánkat.</b></div>
-                        </div>
-                    </div>
-                </div>    
-            </div>
-        </div>
-
-
 
     </div>
+
 
     <footer class="footer ps-4 bg-primary">
         <span class="text-white"> © Ágoston Attila - Kardos Zoltán - Tóth Sándorné Márta 14.EC - v.:1.0.250108</span>

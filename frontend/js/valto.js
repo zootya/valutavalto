@@ -59,4 +59,81 @@ function getValutaadatok(){
     })
 }
 
-getValutaadatok()
+function getDevisaadatok(){
+    document.querySelector("#inputSelect").innerHTML = "";
+    document.querySelector("#outputSelect").innerHTML = "";
+
+    fetch(`${myUrl}:8800/valuta`).then(res=>res.json()).then(result=>{
+        result.forEach(item => {
+            item.penznem == "EUR" ? document.querySelector("#inputSelect").innerHTML +=`<option value = "${item.id}" selected>${item.valutanevek} - (${item.penznem})</option>` : document.querySelector("#inputSelect").innerHTML +=`<option value = "${item.id}">${item.valutanevek} - (${item.penznem})</option>`;
+            
+            item.penznem == "HUF" ? document.querySelector("#outputSelect").innerHTML +=`<option value = "${item.id}" selected>${item.valutanevek} - (${item.penznem})</option>` : document.querySelector("#outputSelect").innerHTML +=`<option value = "${item.id}">${item.valutanevek} - (${item.penznem})</option>`;
+
+            id.push(item.id);
+            penznem.push(item.penznem);
+            arfolyam.push(item.arfolyam);
+            valutanevek.push(item.valutanevek);
+        });
+    })
+}
+
+function getChartadatok(){
+    fetch(`${myUrl}:8800/restadat`).then(res=>res.json()).then(result=>{
+        result.forEach(item => {
+            id.push(item.id);
+            penznem.push(item.penznem);
+            arfolyam.push(item.arfolyam);
+            valutanevek.push(item.valutanevek);
+        });
+    })
+}
+
+
+
+
+function myValutaChart(){
+
+    getChartadatok();
+
+    myValutaChartTable();
+
+    const xValues = [50,60,70,80,90,100,110,120,130,140,150];
+    const yValues = [7,8,8,9,9,9,10,11,14,14,15];
+    
+    myValutaChartWrite(xValues, yValues, "myChart01");
+    myValutaChartWrite(xValues, yValues, "myChart02");
+    myValutaChartWrite(xValues, yValues, "myChart03");
+} 
+
+function myValutaChartTable(){
+    document.querySelector("#myChartDataTables").innerHTML += `
+        <tr>
+                <td class="text-end" width="40%"><br>Most beírt</td>
+                <td class="text-center" width="10%"><br>JELE</td>
+                <td width="50%"><canvas id="myChart03" style="width:100%;max-width:200px"></canvas>
+        </tr>
+    `;
+}
+
+
+function myValutaChartWrite(xValues, yValues, myChart){
+new Chart(myChart, {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 6, max:16}}],
+    }
+  }
+});
+}   

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from . models import Valutak
+from . models import Valutak, mnb_deviza
 import requests
 
 from rest_framework.response import Response
@@ -7,7 +7,7 @@ from rest_framework import status
 
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
-from .serializers import ValutakSerializer
+from .serializers import ValutakSerializer, MnbSerializer
 
 from . import forms
 from django.contrib.auth import login, logout, authenticate  # add to imports
@@ -53,7 +53,17 @@ def restAdatKezeles(request):
         serialized=ValutakSerializer(allData, many=True) 
         #return JsonResponse(serialized.data, safe=False)
         return Response(serialized.data)
-    
+
+@api_view(['GET'])
+def restValuta(request):
+    if request.method == "GET":
+        allData = mnb_deviza.objects.filter(date__range=("2024-12-01", "2025-02-01"))
+        serialized = MnbSerializer(allData, many=True) 
+        return Response(serialized.data)
+
+
+
+
 @api_view(['POST']) #valuta adatok lekérése REST API-val
 def penzadatlekeres(request):
     response = requests.get('https://infojegyzet.hu/webszerkesztes/php/valuta/api/v1/arfolyam/')

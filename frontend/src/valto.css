@@ -79,3 +79,25 @@ body{
     background-image:  linear-gradient(90deg, rgba(0,0,0,0), rgba(235, 245, 251, 0.8));
     height: 100%;
 }
+
+.szoveg01{
+    color: #85c1e9;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.szoveg02{
+    color: #85c1e9;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.kuldesbig{
+    background-image: url(../img/curved-line-reflection.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center !important;
+    height: auto;
+    position: relative;
+    color: #154360;
+}
