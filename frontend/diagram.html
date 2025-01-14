@@ -20,8 +20,13 @@
  
     <link rel="stylesheet" type="text/css" href="./src/valto.css">
   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <!--
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.bundle.min.js"></script>
+    -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   </head>
 
   <body onload="myValutaChart()">
@@ -84,6 +89,31 @@
  
 
 
+        <div class="container ">
+        
+            <div class="row row-cols-1 row-cols-lg-2">
+                <div class="col border">
+                    <div class="mycontainer2 p-3">
+                        <canvas id="newChart"> 
+                            
+                        <canvas>
+                    </div>
+                </div>
+                <div class="col border">
+                    <div class="p-3">
+                        <div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    
+
+
+
+
 
 
 
@@ -96,45 +126,13 @@
                 </tr>
             </thead>
             <tbody class="table-primary" id="myChartDataTables">
-                <tr>
-                    <td class="text-end" width="40%"><br>Hungaricse 01 magyar forint</td>
-                    <td class="text-center" width="10%"><br>HUF</td>
-                    <td  width="50%"><canvas id="myChart01" style="width:100%;max-width:200px"></canvas></td>
-                </tr>
-                <tr>
-                    <td class="text-end" width="40%">Hungaricse 02 magyar forint</td>
-                    <td class="text-center" width="10%">HUF</td>
-                    <td width="50%"><canvas id="myChart02" style="width:100%;max-width:200px"></canvas></td>
-                </tr>
             </tbody>
 
         </table>
-
-
     </div>
 
 
 
-    <div class="container ">
-        
-        <div class="row row-cols-1 row-cols-lg-2">
-            <div class="col border">
-                <div class="p-3">
-                    <div class="szoveg01"><br>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col border">
-                <div class="p-3">
-                    <div class="szoveg01"><br>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
     </div>
 
 

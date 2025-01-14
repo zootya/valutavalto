@@ -54,6 +54,7 @@ def restAdatKezeles(request):
         #return JsonResponse(serialized.data, safe=False)
         return Response(serialized.data)
 
+#@login_required
 @api_view(['GET'])
 def restValuta(request):
     if request.method == "GET":
