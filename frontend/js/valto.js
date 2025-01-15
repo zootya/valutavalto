@@ -7,10 +7,6 @@ var penznem = [];
 var arfolyam = [];
 var valutanevek = [];
 
-//valuta MNB
-var datum = [];
-var valuta = [];
-var ertek = [];
 
 var myTableArray =[ ["trial00", "Euro", "EUR"],
                     ["trial01", "USA dollár", "USD"],
@@ -24,12 +20,7 @@ var myTableArray =[ ["trial00", "Euro", "EUR"],
                     ["trial09", "orosz rubel", "RUB"],
                     ["trial10", "kínai jüan", "CNY"],
                 ];
-//console.info(myTableArray);
-var fgAdatx = [[]];
-var fgAdaty = [[]];
-                
-var fgAdatx_eur = [];
-var fgAdaty_eur = [];
+
 
 var arrayData = [[]];
 
@@ -86,6 +77,7 @@ function getValutaadatok(){
     })
 }
 
+
 // diagram.html fetch get valuta to chart
 function getChartadatok(){
     valuta = [];
@@ -96,26 +88,9 @@ function getChartadatok(){
             //minden adat arrayData tömbe
             arrayData.push([item.date, item.currency, item.value]);
 
-/*
-            // első választható adatata
-            if (item.currency == "EUR"){
-                fgAdatx_eur.push(item.date);
-                fgAdaty_eur.push(item.value);
-            }
-*/
-            valuta.push(item.currency);
-
-            for (let i = 0; i < myTableArray.length; i++){
-                if (item.currency == myTableArray[i][2]){
-                    fgAdatx.push([i, item.date]);
-                    fgAdaty.push([i, item.value]);
-                }
-            } 
         })})
 
         .finally(function () {
-            // első választható deviza
-            //myValutaChartWrite(fgAdatx_eur, fgAdaty_eur, "newChart", "EUR");
 
             // a fix devizák a table be
             let fgAdatArrayx = [];
@@ -128,14 +103,15 @@ function getChartadatok(){
                     fgAdatArrayy = [];
                 }
 
-                for(let j=0; j < fgAdatx.length; j++){
-                    if(fgAdatx[j][0] == i){
-                        fgAdatArrayx.push(fgAdatx[j][1]);
-                        fgAdatArrayy.push(fgAdaty[j][1]);
+                for(let j=0; j < arrayData.length; j++){
+                    if(arrayData[j][1] == myTableArray[i][2]){
+                        fgAdatArrayx.push(arrayData[j][0]);
+                        fgAdatArrayy.push(arrayData[j][2]);
                     }
                 }
-                myValutaChartWrite(fgAdatArrayx, fgAdatArrayy, myTableArray[i][0], myTableArray[i][2], );   //chart
+                myValutaChartWrite(fgAdatArrayx, fgAdatArrayy, myTableArray[i][0], myTableArray[i][2], );
             }
+
             // select fill
             chartSelectFill('chartSelect00');
             chartSelectFill('chartSelect01');
@@ -149,8 +125,8 @@ function myValutaChart(){
     for (let i = 0; i < myTableArray.length; i++){
         myValutaChartTable(myTableArray[i][0], myTableArray[i][1], myTableArray[i][2]); 
     }
-
-    getChartadatok(); // backend/valuta
+    // backend/valuta
+    getChartadatok(); 
 } 
 
 
@@ -158,10 +134,11 @@ function myValutaChart(){
 function chartSelectFill(selectId){
     let shortName = [];
     document.querySelector(`#${selectId}`).innerHTML = "<option value = '' selected></option>";
-    valuta.forEach((i) =>{
-        if (!shortName.includes(i)){
-            shortName.push(i);
-            document.querySelector(`#${selectId}`).innerHTML +=`<option value = ${i}>${i}</option>` ;
+    
+    arrayData.forEach((i) =>{
+        if (!shortName.includes(i[1])){
+            shortName.push(i[1]);
+            document.querySelector(`#${selectId}`).innerHTML +=`<option value = ${i[1]}>${i[1]}</option>` ;
         }
     })
 }
@@ -172,8 +149,6 @@ function selectChangeChart(canvastId, selectId){
     let fgAdatArrayy = [];
     let smalName =document.querySelector(`#${selectId}`).value;
 
-    //console.table(arrayData);
-
     for(let j=0; j < arrayData.length; j++){
         if(arrayData[j][1] == smalName){
             fgAdatArrayx.push(arrayData[j][0]);
@@ -181,11 +156,11 @@ function selectChangeChart(canvastId, selectId){
         }
     }
 
-    let chartStatus = Chart.getChart(canvastId); // <canvas> id
+    let chartStatus = Chart.getChart(canvastId); 
     if (chartStatus != undefined) {
         chartStatus.destroy();
     }
-    myValutaChartWrite(fgAdatArrayx, fgAdatArrayy, canvastId, smalName);   //chart
+    myValutaChartWrite(fgAdatArrayx, fgAdatArrayy, canvastId, smalName);
 }
 
 
@@ -193,9 +168,9 @@ function selectChangeChart(canvastId, selectId){
 function myValutaChartTable(tablerowid, longName, sign){
     document.querySelector("#myChartDataTables").innerHTML += `
         <tr>
-                <td class="h1 text-end" width="40%"><br>${longName}</td>
-                <td class="h1 text-center" width="10%"><br>${sign}</td>
-                <td width="50%"><canvas id=${tablerowid} style="width:100%;max-height:200px"></canvas>
+            <td class="h1 text-end" width="40%"><br>${longName}</td>
+            <td class="h1 text-center" width="10%"><br>${sign}</td>
+            <td width="50%"><canvas id=${tablerowid} style="width:100%;max-height:200px"></canvas>
         </tr>
     `;
 }
@@ -208,7 +183,8 @@ function myValutaChartWrite(xValues, yValues, myChart, myChartLabel){
     const sarga  = ["rgba(240, 195,  15, 1.0)", "rgba( 250, 220, 110, 0.1)"]
 
     yValues[yValues.length - 1] - yValues[yValues.length - 2] > 0 ? szin = piros : szin = zold;
-    var myChartId = new Chart(myChart, {
+
+    new Chart(myChart, {
         type: "line",
         data: {
             labels: xValues,
@@ -230,5 +206,4 @@ function myValutaChartWrite(xValues, yValues, myChart, myChartLabel){
         }
     });
 
-    console.log(myChartId);
 }
