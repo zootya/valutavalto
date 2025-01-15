@@ -90,32 +90,32 @@
 
 
         <div class="container ">
-        
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col border">
                     <div class="mycontainer2 p-3">
-                        <canvas id="newChart"> 
-                            
-                        <canvas>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="chartSelect00">Devizaválasztó</label>
+                            <select class="form-select" id="chartSelect00" tabindex="1" onchange="selectChangeChart('chartCanvas00', 'chartSelect00')">
+                                <option selected>Devizanemek betöltése...</option>
+                            </select>
+                        </div>
+                        <canvas id="chartCanvas00"><canvas>
                     </div>
                 </div>
                 <div class="col border">
-                    <div class="p-3">
-                        <div>
-                            
+                    <div class="mycontainer2 p-3">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="chartSelect01">Devizaválasztó</label>
+                            <select class="form-select" id="chartSelect01" tabindex="2" onchange="selectChangeChart('chartCanvas01', 'chartSelect01')">
+                                <option selected>Devizanemek betöltése...</option>
+                            </select>
                         </div>
+                        <canvas id="chartCanvas01"><canvas>
                     </div>
                 </div>
             </div>
-    
         </div>
     
-
-
-
-
-
-
 
     <div class="mycontainer2">
         <table class="table table-hover my-4">

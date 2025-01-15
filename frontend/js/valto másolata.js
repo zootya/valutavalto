@@ -31,7 +31,7 @@ var fgAdaty = [[]];
 var fgAdatx_eur = [];
 var fgAdaty_eur = [];
 
-var arrayData = [[]];
+
 
 
 function szamol(){
@@ -89,20 +89,14 @@ function getValutaadatok(){
 // diagram.html fetch get valuta to chart
 function getChartadatok(){
     valuta = [];
-    arrayData = [[]];
     fetch(`${myUrl}:8800/valuta`).then(res=>res.json()).then(result=>{
         result.forEach(item => {
-
-            //minden adat arrayData tömbe
-            arrayData.push([item.date, item.currency, item.value]);
-
-/*
             // első választható adatata
             if (item.currency == "EUR"){
                 fgAdatx_eur.push(item.date);
                 fgAdaty_eur.push(item.value);
             }
-*/
+
             valuta.push(item.currency);
 
             for (let i = 0; i < myTableArray.length; i++){
@@ -115,7 +109,7 @@ function getChartadatok(){
 
         .finally(function () {
             // első választható deviza
-            //myValutaChartWrite(fgAdatx_eur, fgAdaty_eur, "newChart", "EUR");
+            myValutaChartWrite(fgAdatx_eur, fgAdaty_eur, "newChart", "EUR");
 
             // a fix devizák a table be
             let fgAdatArrayx = [];
@@ -135,10 +129,7 @@ function getChartadatok(){
                     }
                 }
                 myValutaChartWrite(fgAdatArrayx, fgAdatArrayy, myTableArray[i][0], myTableArray[i][2], );   //chart
-            }
-            // select fill
-            chartSelectFill('chartSelect00');
-            chartSelectFill('chartSelect01');
+            } 
         })
 };
 
@@ -153,41 +144,18 @@ function myValutaChart(){
     getChartadatok(); // backend/valuta
 } 
 
-
-//diagram.html fill select input
 function chartSelectFill(selectId){
     let shortName = [];
-    document.querySelector(`#${selectId}`).innerHTML = "<option value = '' selected></option>";
-    valuta.forEach((i) =>{
+    forEach(i in valuta){
         if (!shortName.includes(i)){
             shortName.push(i);
-            document.querySelector(`#${selectId}`).innerHTML +=`<option value = ${i}>${i}</option>` ;
-        }
-    })
-}
-
-
-function selectChangeChart(canvastId, selectId){
-    let fgAdatArrayx = [];
-    let fgAdatArrayy = [];
-    let smalName =document.querySelector(`#${selectId}`).value;
-
-    //console.table(arrayData);
-
-    for(let j=0; j < arrayData.length; j++){
-        if(arrayData[j][1] == smalName){
-            fgAdatArrayx.push(arrayData[j][0]);
-            fgAdatArrayy.push(arrayData[j][2]);
         }
     }
-
-    let chartStatus = Chart.getChart(canvastId); // <canvas> id
-    if (chartStatus != undefined) {
-        chartStatus.destroy();
-    }
-    myValutaChartWrite(fgAdatArrayx, fgAdatArrayy, canvastId, smalName);   //chart
+    console.table(shortName);
+    
+    document.querySelector(`"#${selectId}"`).innerHTML +=`
+        <option value = ""></option>` ;
 }
-
 
 //diagram.html table new rows
 function myValutaChartTable(tablerowid, longName, sign){
@@ -208,7 +176,8 @@ function myValutaChartWrite(xValues, yValues, myChart, myChartLabel){
     const sarga  = ["rgba(240, 195,  15, 1.0)", "rgba( 250, 220, 110, 0.1)"]
 
     yValues[yValues.length - 1] - yValues[yValues.length - 2] > 0 ? szin = piros : szin = zold;
-    var myChartId = new Chart(myChart, {
+
+    new Chart(myChart, {
         type: "line",
         data: {
             labels: xValues,
@@ -229,6 +198,4 @@ function myValutaChartWrite(xValues, yValues, myChart, myChartLabel){
             }
         }
     });
-
-    console.log(myChartId);
 }
