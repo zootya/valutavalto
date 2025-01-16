@@ -9,5 +9,7 @@ urlpatterns = [
     path('logout/',views.logout_user, name='logout'),
     path('delete/',views.delete_user,name="deleteuser"),
     
-    path('valuta/', views.restValuta),
+    path('mnbvaluta/', views.restMNBValuta),
+    path('mnbvalutalast/', views.restMNBValutaLast),
+    path('mnbname/', views.restMNBName),
     ]

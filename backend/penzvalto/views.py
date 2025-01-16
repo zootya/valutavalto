@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
-from . models import Valutak, mnb_deviza
+from . models import Valutak, mnb_deviza, mnb_name
 import requests
+import datetime
 
 from rest_framework.response import Response
 from rest_framework import status
 
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
-from .serializers import ValutakSerializer, MnbSerializer
+from .serializers import ValutakSerializer, MnbSerializer, MnbNameSerializer
 
 from . import forms
 from django.contrib.auth import login, logout, authenticate  # add to imports
@@ -56,10 +57,27 @@ def restAdatKezeles(request):
 
 #@login_required
 @api_view(['GET'])
-def restValuta(request):
+def restMNBValuta(request):
     if request.method == "GET":
-        allData = mnb_deviza.objects.filter(date__range=("2024-12-01", "2025-02-01"))
+        allData = mnb_deviza.objects.filter(date__range=(datetime.datetime.now()-datetime.timedelta(days=30), datetime.datetime.now() ))
         serialized = MnbSerializer(allData, many=True) 
+        return Response(serialized.data)
+
+#@login_required
+@api_view(['GET'])
+def restMNBValutaLast(request):
+    if request.method == "GET":
+        last = mnb_deviza.objects.order_by("-date")[:1].values("date")
+        allData = mnb_deviza.objects.filter(date = last )
+        serialized = MnbSerializer(allData, many=True) 
+        return Response(serialized.data)
+
+#@login_required
+@api_view(['GET'])
+def restMNBName(request):
+    if request.method == "GET":
+        allData = mnb_name.objects.all()
+        serialized = MnbNameSerializer(allData, many=True) 
         return Response(serialized.data)
 
 

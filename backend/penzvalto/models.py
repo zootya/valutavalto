@@ -19,3 +19,21 @@ class mnb_deviza(models.Model):
         return self.currency
     class Meta:
         verbose_name_plural="Valuta"
+
+class mnb_name_good(models.Model):
+    currency = models.CharField(max_length=10)
+    longname = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.longname
+    class Meta:
+        verbose_name_plural="deviza neve"
+
+class mnb_name(models.Model):
+    smallname = models.CharField(max_length=5)
+    longname = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.longname
+    class Meta:
+        verbose_name_plural="deviza neve"
