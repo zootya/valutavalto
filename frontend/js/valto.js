@@ -2,11 +2,6 @@
 //const myUrl = "http://127.0.0.1";
 const myUrl = "http://azenhazam.mywire.org";
 
-//restadat
-var id = [];
-var penznem = [];
-var arfolyam = [];
-var valutanevek = [];
 
 var myTableArray =[ ["trial00", "Euro", "EUR"],
                     ["trial01", "USA dollár", "USD"],
@@ -99,8 +94,9 @@ function getValutaadatok(){
         result.forEach(item => {
             arrayDataName.push([item.id, item.smallname, item.longname]);
     })})
+
     .finally(function () {
-        fillInputSelect();
+        fillInputSelectWithStandard();
     })
 
 
@@ -116,8 +112,7 @@ function getValutaadatok(){
 
 }
 
-
-function fillInputSelect(){
+function fillInputSelectWithStandard(){
     //console.table(arrayDataName)
     arrayDataName.forEach((t)=>{
         t[1] == "EUR" ? document.querySelector("#inputSelect").innerHTML +=`<option value = "${t[1]}" selected>${t[2]} - ${t[1]}</option>` : document.querySelector("#inputSelect").innerHTML +=`<option value = "${t[1]}">${t[2]} - ${t[1]}</option>`;
@@ -126,21 +121,30 @@ function fillInputSelect(){
 }
 
 
+// ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****
+// ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** *****
 
 // diagram.html fetch get valuta to chart
 function getChartadatok(){
-    valuta = [];
-    arrayData = [[]];
-    fetch(`${myUrl}:8800/valuta`).then(res=>res.json()).then(result=>{
-        result.forEach(item => {
 
+    fetch(`${myUrl}:8800/mnbname`).then(res=>res.json()).then(result=>{
+        result.forEach(item => {
+            arrayDataName.push([item.id, item.smallname, item.longname]);
+    })})
+    .finally(function () {
+            // select fill
+            fillInputSelect('chartSelect00');
+            fillInputSelect('chartSelect01');
+    })
+
+    arrayData = [[]];
+    fetch(`${myUrl}:8800/mnbvaluta`).then(res=>res.json()).then(result=>{
+        result.forEach(item => {
             //minden adat arrayData tömbe
             arrayData.push([item.date, item.currency, item.value]);
-
         })})
 
         .finally(function () {
-
             // a fix devizák a table be
             let fgAdatArrayx = [];
             let fgAdatArrayy = [];
@@ -151,7 +155,6 @@ function getChartadatok(){
                     fgAdatArrayx = [];
                     fgAdatArrayy = [];
                 }
-
                 for(let j=0; j < arrayData.length; j++){
                     if(arrayData[j][1] == myTableArray[i][2]){
                         fgAdatArrayx.push(arrayData[j][0]);
@@ -161,9 +164,7 @@ function getChartadatok(){
                 myValutaChartWrite(fgAdatArrayx, fgAdatArrayy, myTableArray[i][0], myTableArray[i][2], );
             }
 
-            // select fill
-            chartSelectFill('chartSelect00');
-            chartSelectFill('chartSelect01');
+
         })
 };
 
@@ -180,15 +181,10 @@ function myValutaChart(){
 
 
 //diagram.html fill select input
-function chartSelectFill(selectId){
-    let shortName = [];
+function fillInputSelect(selectId){
     document.querySelector(`#${selectId}`).innerHTML = "<option value = '' selected></option>";
-    
-    arrayData.forEach((i) =>{
-        if (!shortName.includes(i[1])){
-            shortName.push(i[1]);
-            document.querySelector(`#${selectId}`).innerHTML +=`<option value = ${i[1]}>${i[1]}</option>` ;
-        }
+    arrayDataName.forEach((t)=>{
+        document.querySelector(`#${selectId}`).innerHTML +=`<option value = "${t[1]}">${t[2]} - ${t[1]}</option>`;
     })
 }
 
