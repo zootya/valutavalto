@@ -16,6 +16,8 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
 
+from . import mnb_deviza_download
+
 @login_required
 def home(request):
 
@@ -55,7 +57,6 @@ def restAdatKezeles(request):
         #return JsonResponse(serialized.data, safe=False)
         return Response(serialized.data)
 
-#@login_required
 @api_view(['GET'])
 def restMNBValuta(request):
     if request.method == "GET":
@@ -63,7 +64,7 @@ def restMNBValuta(request):
         serialized = MnbSerializer(allData, many=True) 
         return Response(serialized.data)
 
-#@login_required
+
 @api_view(['GET'])
 def restMNBValutaLast(request):
     if request.method == "GET":
@@ -72,13 +73,19 @@ def restMNBValutaLast(request):
         serialized = MnbSerializer(allData, many=True) 
         return Response(serialized.data)
 
-#@login_required
 @api_view(['GET'])
 def restMNBName(request):
     if request.method == "GET":
+        #mnb_deviza_download.nmbLetolt()
         allData = mnb_name.objects.all()
         serialized = MnbNameSerializer(allData, many=True) 
         return Response(serialized.data)
+
+@api_view(['GET'])
+def restMNBRefresh(request):
+    if request.method == "GET":
+        mnb_deviza_download.nmbLetolt()
+        return redirect('login')
 
 
 

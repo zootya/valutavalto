@@ -15,6 +15,8 @@
 ## 📚 Tech Stack
 
 - Python 3.13.1
+- Pandas 2.2.3
+- OpenPyXL 3.1.5
 - Django 5.1.2
 - Docker 4.37.1
 - Bootstrap 5.3
@@ -42,8 +44,15 @@ A fejlesztési kaland elindításához kövesse az alábbi egyszerű lépéseket
 ```Django==5.1.4```
 ```django-cors-headers==4.6.0```
 ```djangorestframework==3.15.2```
+```et_xmlfile==2.0.0```
 ```idna==3.10```
+```numpy==2.2.1```
+```openpyxl==3.1.5```
+```pandas==2.2.3```
+```python-dateutil==2.9.0.post0```
+```pytz==2024.2```
 ```requests==2.32.3```
+```six==1.17.0```
 ```sqlparse==0.5.3```
 ```tzdata==2024.2```
 ```urllib3==2.3.0```

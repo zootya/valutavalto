@@ -12,4 +12,5 @@ urlpatterns = [
     path('mnbvaluta/', views.restMNBValuta),
     path('mnbvalutalast/', views.restMNBValutaLast),
     path('mnbname/', views.restMNBName),
+    path('mnbrefresh/', views.restMNBRefresh),
     ]
