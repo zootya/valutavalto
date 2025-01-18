@@ -4,10 +4,11 @@ import sqlite3
 import datetime
 import math
 
-def nmbLetolt():  # nmb oldalról letölti a arfolyam.xlsx állományt ami az aktuális árfolyamokat tartalmazza
+
+def nmbLetolt():  
+    # nmb oldalról letölti a arfolyam.xlsx állományt, ami az aktuális árfolyamokat tartalmazza
     url = "https://www.mnb.hu/Root/ExchangeRate/arfolyam.xlsx"
     filename = "arfolyam.xlsx"
-
     
     # letölti a MNB weboldalról a(z) arfolyam.xlsx állományt
     response = requests.get(url)
@@ -20,11 +21,6 @@ def nmbLetolt():  # nmb oldalról letölti a arfolyam.xlsx állományt ami az ak
     # ------ letöltés vége------------------------------------
     
     
-    # Load Excel file
-    ##df = pd.read_excel(filename)
-    # Print the DataFrame
-    ##print(df)    
-
     # beolvassa egy dataframe-be a "filename" állományt
     xls = pd.ExcelFile(filename) 
     sheetX = xls.parse(0)            # az első munkalap
@@ -35,7 +31,11 @@ def nmbLetolt():  # nmb oldalról letölti a arfolyam.xlsx állományt ami az ak
     xls.close()
 
 
-def nmbToSqlite(dadaFrame): 
+def nmbToSqlite(dadaFrame):
+    # az xls adatait beolvassa egy sqlite tmp táblába, de csak az kerül eltárolásra ami
+    # még nem szerepel benne, majd az egész tmp átírja a rendes mnb állományba. 
+    # Igy csak egyszer szerepel egy adat
+     
     conn = sqlite3.connect('db.sqlite3')
 
     query = f"CREATE TABLE IF NOT EXISTS mnb_deviza_tmp ( "\
@@ -75,9 +75,6 @@ def nmbToSqlite(dadaFrame):
             f"substr(arfolyam, 12, 3), "\
             f"substr(arfolyam, 16) "\
             f"FROM mnb_deviza_tmp;"
-    conn.execute(query)
-
-    query = f"DROP TABLE IF EXISTS mnb_deviza_tmp;"
     conn.execute(query)
 
     conn.commit()

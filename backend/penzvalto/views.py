@@ -57,7 +57,14 @@ def restAdatKezeles(request):
         #return JsonResponse(serialized.data, safe=False)
         return Response(serialized.data)
 
+
+
+# ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** 
+#  
+# ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** 
 @api_view(['GET'])
+# frontend lekérdezése: lekérdezi az előző 30nap adatait
+# ez a grafikonokhoz kell
 def restMNBValuta(request):
     if request.method == "GET":
         allData = mnb_deviza.objects.filter(date__range=(datetime.datetime.now()-datetime.timedelta(days=30), datetime.datetime.now() ))
@@ -66,27 +73,38 @@ def restMNBValuta(request):
 
 
 @api_view(['GET'])
+# frontend lekérdezése: az utolsó napi adatokat 
+# ez a számolásokhoz, a kalkulációhoz kell
 def restMNBValutaLast(request):
     if request.method == "GET":
+        #megkeresi az utoldó nap dátumát
         last = mnb_deviza.objects.order_by("-date")[:1].values("date")
+        #betölti az utolsó nap adatait
         allData = mnb_deviza.objects.filter(date = last )
         serialized = MnbSerializer(allData, many=True) 
         return Response(serialized.data)
 
+
 @api_view(['GET'])
+# frontend lekérdezése: az MNB által nyílvántartott devizanevek
 def restMNBName(request):
     if request.method == "GET":
-        #mnb_deviza_download.nmbLetolt()
         allData = mnb_name.objects.all()
         serialized = MnbNameSerializer(allData, many=True) 
         return Response(serialized.data)
 
+
 @api_view(['GET'])
+# frontend lekérdezése: ez meghívja MNB frissítését 
+# visszetér a bejelentkezési oldallal
 def restMNBRefresh(request):
     if request.method == "GET":
         mnb_deviza_download.nmbLetolt()
         return redirect('login')
 
+# ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** 
+# 
+# ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** ***** 
 
 
 
