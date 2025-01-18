@@ -14,15 +14,16 @@
 - [x] serializer létrehozása
 - [x] GET API végpont elkészítése
 - [x] POST API végpont elkészítése
-- [ ] felhasználói főoldal létrehozása az adatok megjelenítésére
+- [x] felhasználói főoldal létrehozása az adatok megjelenítésére
 - [ ] felhasználói oldal létrehozása az adat beviteli ürlaphoz
 - [ ] programfejlesztői dokumentáció elkészítése
 - [ ] működésének műszaki feltételeit és használatának rövid bemutatását tartalmazó felhasználói dokumentáció elkészítése
 
 ## Secondary TODO List
 - [ ] Üdvözlő és elköszönő képernyő
-- [ ] Aktuális árfolyamok megjelenítése
+- [x] Aktuális árfolyamok megjelenítése
 - [ ] Felhasználó felvétele
 - [ ] Tranzakció
 - [ ] Felhasználó tranzakciójának tárolása
 - [ ] Tranzakciószintnek megfelelő kedvezmény beállítása
+- [ ] MNB inaktív devizanemeinek a háttere jelenítse meg, hogy már nem aktív
