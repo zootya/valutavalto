@@ -23,6 +23,7 @@ class mnb_deviza(models.Model):
 class mnb_name_good(models.Model):
     currency = models.CharField(max_length=10)
     longname = models.CharField(max_length=50)
+    status = models.BooleanField(default=True)  
 
     def __str__(self):
         return self.longname
@@ -32,6 +33,7 @@ class mnb_name_good(models.Model):
 class mnb_name(models.Model):
     smallname = models.CharField(max_length=5)
     longname = models.CharField(max_length=50)
+    status = models.BooleanField(default=True)  
 
     def __str__(self):
         return self.longname

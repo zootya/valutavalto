@@ -89,7 +89,7 @@ def restMNBValutaLast(request):
 # frontend lekérdezése: az MNB által nyílvántartott devizanevek
 def restMNBName(request):
     if request.method == "GET":
-        allData = mnb_name.objects.all()
+        allData = mnb_name.objects.all().filter(status=1)
         serialized = MnbNameSerializer(allData, many=True) 
         return Response(serialized.data)
 

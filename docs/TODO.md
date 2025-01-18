@@ -26,4 +26,4 @@
 - [ ] Tranzakció
 - [ ] Felhasználó tranzakciójának tárolása
 - [ ] Tranzakciószintnek megfelelő kedvezmény beállítása
-- [ ] MNB inaktív devizanemeinek a háttere jelenítse meg, hogy már nem aktív
+- [x] MNB inaktív devizanemeinek kiszűrése
