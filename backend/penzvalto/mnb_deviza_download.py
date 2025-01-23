@@ -59,7 +59,7 @@ def nmbToSqlite(dadaFrame):
                         query = f"INSERT INTO mnb_deviza_tmp (arfolyam) VALUES ('{s}');"
                         conn.execute(query)
 
-    query = f"DROP TABLE IF EXISTS mnb_deviza;"
+    query = f"DROP TABLE IF EXISTS penzvalto_mnb_deviza;"
     conn.execute(query)
 
     query = f"CREATE TABLE IF NOT EXISTS penzvalto_mnb_deviza ( "\
