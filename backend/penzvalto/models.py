@@ -16,9 +16,9 @@ class mnb_deviza(models.Model):
     value = models.FloatField()
 
     def __str__(self):
-        return self.currency
+        return self.currency +" - "+str(self.value)
     class Meta:
-        verbose_name_plural="Valuta"
+        verbose_name_plural="Valuta - Deviza"
 
 class mnb_name_good(models.Model):
     currency = models.CharField(max_length=10)

@@ -213,8 +213,8 @@ function selectChangeChart(canvastId, selectId){
 function myValutaChartTable(tablerowid, longName, sign){
     document.querySelector("#myChartDataTables").innerHTML += `
         <tr>
-            <td class="h1 text-end" width="40%"><br>${longName}</td>
-            <td class="h1 text-center" width="10%"><br>${sign}</td>
+            <td class="h1 text-end" width="30%"><br>${longName}</td>
+            <td class="h1 text-center" width="20%"><br>${sign}</td>
             <td width="50%"><canvas id=${tablerowid} style="width:100%;max-height:200px"></canvas>
         </tr>
     `;
